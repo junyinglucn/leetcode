@@ -17,4 +17,4 @@ class Solution:
 # solution B
 class Solution:
     def sortByBits(self, arr):
-        return sorted(arr, key=lambda i: str(bin(i)).count('1') + i / 1e10)
+        return sorted(arr, key=lambda x: (bin(x).count('1'), x))
