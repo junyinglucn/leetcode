@@ -11,7 +11,3 @@ class Solution:
             if nums[i]==nums[i+1]:
                 return True
         return False
-
-# Solution C
-class Solution:
-    def containsDuplicate(self, nums):
