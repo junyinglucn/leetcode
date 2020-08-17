@@ -9,3 +9,9 @@ class Solution:
         for i in range(len(nums) - 1):
             if nums[i + 1] != nums[i] + 1:
                 return i + 1
+
+
+# Solution B
+class Solution:
+    def missingNumber(self, nums):
+        return sum([i for i in range(len(nums) + 1)]) - sum(nums)
