@@ -5,6 +5,22 @@
 #         self.left = None
 #         self.right = None
 
+# Solution A
+class Solution:
+    def inorderTraversal(self, root):
+        def inorder(root):
+            if not root:
+                return
+            inorder(root.left)
+            res.append(root.val)
+            inorder(root.right)
+
+        res = []
+        inorder(root)
+        return res
+
+
+# Solution B
 class Solution:
     def inorderTraversal(self, root):
         white, gery = 0, 1
