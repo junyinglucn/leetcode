@@ -6,7 +6,6 @@ class Solution:
             return True
         return False
 
-
 # Solution B
 class Solution:
     def isPalindrome(self, x):
