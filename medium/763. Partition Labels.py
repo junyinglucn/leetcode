@@ -5,22 +5,22 @@ class Solution:
                 if S[i] == aw:
                     return i
 
-        def breakpoint(startindex):
-            aw = S[startindex]
+        def breakpoint(startidx):
+            aw = -S[startidx]
             last = findlast(aw, S)
 
-            j = startindex + 1
+            j = startidx + 1
             while j < last:
-                temp = findlast(S[j], S)
-                if temp > last:
-                    last = temp
+                tmp = findlast(S[j], S)
+                if tmp > last:
+                    last = tmp
                 j += 1
 
-            output.append(last - startindex + 1)
+            output.append(last - startidx + 1)
             return last
 
         output = []
-        startindex = 0
-        while startindex < len(S):
-            startindex = breakpoint(startindex) + 1
+        startidx = 0
+        while startidx < len(S):
+            startidx = breakpoint(startidx) + 1
         return output
