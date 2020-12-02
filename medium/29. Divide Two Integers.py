@@ -1,27 +1,38 @@
 class Solution:
     def divide(self, dividend: int, divisor: int) -> int:
-        MIN_INT, MAX_INT = -2147483648, 2147483647
-        flag = 1
-        if dividend < 0: flag, dividend = -flag, -dividend
-        if divisor < 0: flag, divisor = -flag, -divisor
-
-        def div(dividend, divisor):
+        def recursion(dividend, divisor):
             if dividend < divisor:
                 return 0
-            cur = divisor
-            multiple = 1
-            while cur + cur < dividend:
-                cur += cur
-                multiple += multiple
-            return multiple + div(dividend - cur, divisor)
+            if dividend == divisor:
+                return 1
+            nn = 1
+            dd = divisor
+            while True:
+                if dividend > dd:
+                    n = nn
+                    nn += nn
+                    d = dd
+                    dd += dd
+                elif dividend == dd:
+                    return nn
+                else:
+                    return n + recursion(dividend - d, divisor)
 
-        res = div(dividend, divisor)
-
-        res = res if flag > 0 else -res
-
-        if res < MIN_INT:
-            return MIN_INT
-        elif MIN_INT <= res <= MAX_INT:
-            return res
+        if dividend >= 0:
+            if divisor > 0:
+                positive = True
+            else:
+                positive = False
         else:
-            return MAX_INT
+            if divisor > 0:
+                positive = False
+            else:
+                positive = True
+        ans = recursion(abs(dividend), abs(divisor))
+        if positive:
+            if ans > 2 ** 31 - 1:
+                return 2 ** 31 - 1
+            else:
+                return ans
+        else:
+            return -ans
