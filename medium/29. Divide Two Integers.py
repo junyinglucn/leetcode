@@ -3,8 +3,6 @@ class Solution:
         def recursion(dividend, divisor):
             if dividend < divisor:
                 return 0
-            if dividend == divisor:
-                return 1
             nn = 1
             dd = divisor
             while True:
