@@ -5,22 +5,21 @@ class MinStack:
         initialize your data structure here.
         """
         self.l = []
+        self.min_stack = [math.inf]
 
     def push(self, x: int) -> None:
         self.l.append(x)
+        self.min_stack.append(min(x, self.min_stack[-1]))
 
     def pop(self) -> None:
-        self.l = self.l[0:-1]
+        self.l.pop()
+        self.min_stack.pop()
 
     def top(self) -> int:
         return self.l[-1]
 
     def getMin(self) -> int:
-        ans = self.l[0]
-        for i in self.l:
-            if i < ans:
-                ans = i
-        return ans
+        return self.min_stack[-1]
 
 # Your MinStack object will be instantiated and called as such:
 # obj = MinStack()
