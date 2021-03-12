@@ -6,24 +6,17 @@
 #         self.right = right
 class Solution:
     def pathSum(self, root: TreeNode, sum: int) -> int:
-        prefix_sum = collections.defaultdict(int)
-        prefix_sum[0] = 1
-        pre = 0
-        ans = 0
+        if not root:
+            return 0
+        ct = self.dfs(root, sum) + self.pathSum(root.left, sum) + self.pathSum(root.right, sum)
+        return ct
 
-        def preOrder(root):
-            nonlocal pre, prefix_sum, sum, ans
-            if not root:
-                return
-            pre += root.val
-            ans += prefix_sum[pre - sum]
-            prefix_sum[pre] += 1
-
-            preOrder(root.left)
-            preOrder(root.right)
-
-            prefix_sum[pre] -= 1
-            pre -= root.val
-
-        preOrder(root)
-        return ans
+    def dfs(self, node, path):
+        if not node:
+            return 0
+        path -= node.val
+        if path == 0:
+            ct = 1 + self.dfs(node.left, path) + self.dfs(node.right, path)
+        else:
+            ct = 0 + self.dfs(node.left, path) + self.dfs(node.right, path)
+        return ct
